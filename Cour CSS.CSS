@@ -1,0 +1,404 @@
+CSS = Cascading Style sheets
+
+I. la nature et l'intérêt du CSS
+II. l'intérêt de séparer la forme du fonctionnel,
+III. la syntaxe CSS avec les (multiples) sélecteurs,
+les (multiples) paires de propriétés-valeurs et les commentaires,
+IV. des détails sur le fonctionnement des polices, de leur taille et des couleurs.
+
+I.
+
+1 cela permet d'appliquer le même style à plusieurs éléments HTML sans devoir écrire le code
+(ex : style="color:red":) pour chacun des éléments.
+
+2 Vous pouvez appliquer une apparence et un formatage identique à plusieurs pages HTML à partir d'un seul fichier CSS.
+
+3 En fait, c'est une façon peu efficace de déclarer les styles utilisés par votre site internet
+pour les raisons que nous avons déjà mentionnées : vous devez écrire le même code à de multiples endroits
+et si vous voulez faire une modification importante de style sur plusieurs éléments,
+vous devrez modifier chacune des balises une par une.
+Avec un seul fichier CSS, il vous suffira de faire les modifications à un seul endroit !
+ex :
+p {
+	color: red;
+}
+
+span {
+	color:blue;
+}
+
+Il y a deux manières de déclarer du CSS.
+moins courant:
+		1 La première est de mettre votre CSS entre des balises <style></style>, directement dans votre fichier HTML.
+Ces balises <style> s'insèrent entre les balises <head></head> de votre fichier HTML.
+Vous en trouverez un exemple ci dessous.
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			p {
+				color: purple;
+			}
+		</style>
+		<title>Resultat</title>
+	</head>
+	<body>
+		<p>Regardez ! Je suis violet !</p>
+	</body>
+</html>
+
+II.
+
+le plus pratique :
+		2 Vous savez que vous devez écrire votre CSS dans un fichier à part.
+Mais comment être sûr que le fichier HTML aura accès aux informations de style contenues dans le fichier CSS ?
+
+Grâce à une balise <link> (comme vous l'avez vu dans le premier exercice de ce cours)
+insérée entre les balises <head></head> de votre page HTML.
+
+Votre balise <link> a besoin de trois attributs :
+
+Un attribut type qui doit toujours être égal à ="text/css".
+Un attribut rel qui doit toujours être égal à ="stylesheet".
+Un attribut href qui doit pointer vers l'adresse internet de votre fichier CSS.
+
+<!DOCTYPE html>
+<html>
+	<head>
+	    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+	</head>
+	<body>
+		<p>Je veux être de police taille 44 !</p>
+	</body>
+</html>
+
+III.
+
+selector {
+    property: value;
+}
+Un sélecteur = selector peut être n'importe quel élément HTML tel que <p>, <img>, ou <table>.
+Il suffit de retirer les < > !
+Par exemple, pour mettre le texte des paragraphes en rouge, il suffit d'ajouter dans le fichier CSS :
+p {
+    color: red;
+}
+Une propriété = property est une caractéristique d'un sélecteur. La famille de police (font-family),
+la couleur (color) et
+la taille de police (font-size) sont des caractéristiques qui peuvent être attribuées à un mot ou à des paragraphes dans vos pages web (il y en a beaucoup d'autres !).
+
+Une valeur = value est - comme son nom l'indique - une valeur possible de la propriété.
+À la propriété color, on peut attribuer la valeur rouge (red), bleu (blue), noire (black) ou
+n'importe quelle autre couleur.
+La propriété font-family peut prendre pour valeur Arial, Verdana, Impact ou toute autre police de caractères.
+Et ainsi de suite..
+
+Chaque couple propriété/valeur (property: value) doit se terminer par un point-virgule (;).
+C'est ce qui permet au CSS de savoir que votre paire est terminée et que vous êtes prêt pour la prochaine.
+il est important de ne pas oublier les points-virgules ; à la fin de chaque ligne.
+Le point-virgule indique au CSS que la paire propriété-valeur est terminée
+et qu'il est temps de passer à la suivante.
+Sans point-virgule, cela va devenir confus et votre page ne ressemblera pas à ce que vous voulez.
+
+L'un des autres avantages du CSS est qu'il vous permet de choisir plusieurs propriétés pour un même sélecteur.
+Par exemple, si vous voulez que tous les paragraphes aient la même couleur,
+la même famille de police et la même taille, il vous suffit d'écrire :
+
+p {
+    font-family: Arial;
+    color: blue;
+    font-size: 24px;
+}
+
+Contrairement aux commentaires CSS qui s'écrivent comme ceci :
+/*Je suis un commentaire*/
+
+Nous avons vu que pour attribuer une valeur à la propriété color avec CSS,
+on écrit color:nomdelacouleur; (par exemple : color:red;).
+Vous vous êtes peut-être demandé comment faire pour utiliser du mauve ?
+Ou du bordeaux ? Ou encore du saumon ? Le CSS connaît-il toutes ces couleurs ?
+
+Non, le CSS ne connaît pas le nom de toutes les couleurs !
+Mais il peut comprendre des millions de couleurs exprimées en valeur hexadécimale.
+
+Vous avez l'habitude des valeurs décimales avec lesquelles nous comptons tous les jours !
+Prenons par exemple le nombre 1432. Chaque chiffre de ce nombre peut prendre des valeurs entre 0 et 9.
+Donc, chaque chiffre n'a que 10 valeurs possibles.
+C'est pourquoi on parle de base 10 pour décrire cette forme classique de comptage.
+
+Une valeur hexadécimale est composée de chiffres et/ou de lettres.
+Le comptage hexadécimal est en base 16 : chaque signe qui compose la valeur est soit un chiffre de 0 à 9
+soit une lettre de A à F ! C'est fou, non ?
+
+Les codes hexadécimaux commencent tous par le symbole dièse # ;
+ils sont composés de six signes (chiffres ou lettres) et ne sont pas sensibles à la casse :
+les lettres peuvent être écrites en majuscules ou en minuscules,
+c'est pareil ! #FFC125 et #ffc125
+
+h3 {
+	color: #cc6666;
+}
+
+IV.
+
+Un pixel est un point sur votre écran d'ordinateur.
+Spécifier la taille de police en pixels,
+c'est très bien si vous voulez que les visiteurs de votre site web voient exactement
+la même chose que ce qui est affiché sur votre propre écran.
+
+Mais que se passe-t-il si des utilisateurs consultent votre site
+sur un écran ayant des dimensions très différentes du vôtre,
+celui d'un smartphone ou d'une tablette par exemple ?
+C'est ici qu'entrent en scène les em
+(à ne pas confondre avec les balises <em></em> utilisées pour mettre du texte en italique dans le HTML).
+
+L'unité de mesure em est une mesure relative :
+un em est égal à la taille de police par défaut de l'écran utilisé.
+C'est donc parfait pour les smartphones
+par exemple puisque la taille affichée des textes dépend de la taille de l'écran du smartphone utilisé
+et non de la taille absolue de vos polices (celle que vous avez choisie quand vous avez codé votre site web).
+Une taille de police en em dit seulement :
+"Hey, 1em, c'est la taille de police utilisée normalement ;
+la valeur 2em correspond à une taille de police deux fois plus grande ;
+la valeur 0.5em correspond à une taille de police deux fois plus petite !".
+
+La plupart des ordinateurs vont comprendre les polices de base comme Arial, Verdana, Courier et Garamond
+mais chacun peut avoir différentes polices installées dans son ordinateur personnel.
+Heureusement, CSS a des polices intégrées par défaut.
+Cela permet à n'importe quel utilisateur de voir ce que vous voulez lui montrer.
+Ces polices intégrées sont de 3 types :
+
+		Serif : dans ce type de police, les extrémités des lettres ont des extensions.
+		La Garamond est une police serif. Faites une recherche sur "serif" pour trouve des exemples.
+
+		Sans-serif : c'est une police sans extensions. L'Arial et la Verdana sont des polices sans-serif.
+
+		Cursive : c'est une police qui ressemble à une écriture manuscrite.
+
+Valeurs de secours
+Il n'est pas nécessaire d'utiliser directement des valeurs de police par défaut telles que cursive ou sans-serif.
+Vous pouvez dire à CSS d'essayer plusieurs polices :
+si la première n'est pas disponible, CSS passera à la suivante et ainsi de suite.
+		Par exemple, si vous écrivez :
+		p {
+		    font-family: Tahoma, Verdana, sans-serif;
+		}
+
+
+
+les bordures d'un tableau
+td {
+    height: 50px;
+    border: 1px dashed blue; dashed = pointillé
+    border: 1px solid black; solid = trait contiue
+}
+
+Liens et décoration du texte
+
+Les liens ont beaucoup de propriétés semblables aux textes :
+vous pouvez changer leur police, leur couleur, leur taille, etc.
+
+Mais les liens ont une autre propriété :
+text-decoration qui permet de modifier votre lien pour qu'il soit un peu plus beau.
+Vous avez probablement l'habitude de voir des liens qui sont bleus et soulignés, n'est-ce pas ?
+Ce n'est pas comme ça qu'il doivent être affichés !
+
+
+Donnez une forme à votre bouton
+
+Cela implique l'utilisation d'une nouvelle propriété intitulée border-radius
+(nous en apprendrons plus à ce sujet dans les cours et projets à venir).
+Cette propriété modifie les coins des objets HTML.
+
+
+Propriété : "margin: auto;" 	est le code CSS que l'on utilise pour dire au navigateur :
+"Hé ! Fais en sorte que les marges soient identiques de chaque côté de cet élément HTML."
+Quand toutes les marges autour d'un élément HTML sont de taille identique, celui-ci est centré.
+
+Propriété : "text-align: center;" 	: cette paire propriété/valeur permet de centrer les éléments de type texte.
+
+Propriété : "border-radius: 5px" corespond à l'arrondissement des coins
+
+
+tous les éléments HTML peuvent être utilisés comme sélecteurs CSS !
+Vous pouvez donc modifier des balises <ul>, <table> et même
+l'intégralité de ce qui se trouve dans <body> en utilisant respectivement comme sélecteurs ul, table ou body.
+
+
+Comment faire pour modifier uniquement les <p> qui sont à l'intérieur des deux <div>
+et non l'intégralité des <p> de la page HTML ?
+Il suffit de sélectionner ceux-ci dans l'onglet CSS de la manière suivante :
+
+div div p {
+        /*votre code CSS!*/
+    }
+
+div div div h3 {
+		    color: red;
+		{
+
+
+Il y a aussi un sélecteur très spécial qui permet d'appliquer des styles CSS à tous les éléments de la page :
+le sélecteur * = selecteur universel. Par exemple, si vous tapez :
+			* {
+			    border: 2px solid black;
+			}
+
+Rappelez-vous que vous pouvez atteindre un élément qui est l'enfant d'un autre élément de cette façon :
+
+			    div div p {
+			 /* votre CSS */
+			}
+			En écrivant div div p { ,
+
+nous sélectionnons tous les <p> imbriqués quelque part dans la page HTML à l'intérieur d'une <div> ;
+cette <div> est elle-même imbriquée quelque part à l'intérieur d'une autre <div>.
+Si vous voulez sélectionner un enfant direct,
+c'est-à-dire un élément qui est directement imbriqué à l'intérieur d'un autre élément
+et sans aucun autre élément entre les deux, vous pouvez utiliser le symbole >, comme ceci :
+
+			    div > p {
+			/* votre CSS*/
+			}
+
+En procédant ainsi, seuls les <p> qui sont imbriqués directement à l'intérieur d'une <div> seront sélectionnés ;
+cela ne sélectionnera pas les paragraphes qui sont,
+par exemple, imbriqués dans des listes qui sont elles-mêmes imbriquées dans des <div>.
+
+
+Comme nous l'avons précisé auparavant,
+certains sélecteurs en "annulent" d'autres quand ils ont un plus grand degré de spécificité.
+Par exemple :
+ul li p { est un sélecteur plus spécifique que p { ;
+	c'est pourquoi le CSS appliquera le style ul li p { aux <p> imbriqués dans une liste non ordonnée <ul>.
+
+Il y a deux sélecteurs qui sont encore plus spécifiques que ceux décrits ci-dessus :
+les "classes" et les "ID".{}
+
+	selector {
+	    property: value;{}
+
+	le selecteur 	"id" devient #red exemple dans le fichier .CSS
+	le selecteur 	"classe devient" .list_item exemple dans le fichier .CSS
+
+	Les classes sont utiles quand vous avez besoin d'appliquer le même style à plusieurs éléments HTML différents.
+	Plutôt que d'appliquer, en la répétant, la même règle aux différents sélecteurs,
+	vous pouvez simplement assigner une seule et même classe aux éléments HTML concernés,
+	puis définir le style de cette classe dans l'onglet CSS.
+
+	Les classes sont assignées aux éléments HTML grâce à l'attribut class suivi du signe =, comme ceci :
+
+	<div class="square"></div>
+	<img class="square"/>
+	<td class="square"></td>
+	Dans le CSS, les classes sont identifiées par un point . comme cela :
+	.square {
+	    height: 100px;
+	    width: 100px;
+	}
+	Cela vous permet de sélectionner différents types d’éléments HTML (en les identifiant par la classe class="square")
+	et de leur assigner le même style .square {. {}
+
+	Les ID, en revanche, sont supers quand vous voulez appliquer un style à un élément en particulier.
+
+	Les ID sont assignés aux éléments HTML avec l'attribut id suivi du signe =, comme cela :
+
+		<div id="first"></div>
+		<div id="second"></div>
+		<p id="intro"></p>
+	Dans le CSS, les ID sont identifiés par un dièse #, comme ceci :
+
+		#first {
+		    height:50px;
+		}
+
+		#second {
+		    height:100px;
+		}
+
+		#intro {
+		    color:#FF0000;
+		}
+		Les ID vous permettent d'appliquer un style à un seul élément, plutôt qu'à tous.
+
+
+
+Un sélecteur de pseudo-classe est un moyen d'accéder à un élément HTML qui n'est pas contenu dans
+l'arbre HTML du document (Vous vous souvenez de la structure de l'arbre dont nous avons parlé précédemment ?).
+Pour le moment, vous pouvez facilement localiser un lien dans l'arbre.
+Mais où pourriez-vous trouver l'information qui définit si on a cliqué sur le lien ou non ? Elle n'est pas là !
+
+Les sélecteurs de pseudo-classe permettent d'appliquer ce genre de changement de style à notre document HTML.
+Par exemple, nous avons vu qu'il était possible de changer le style d'un lien pour qu'il ne soit plus en bleu souligné.
+En utilisant un sélecteur de pseudo-classe,
+vous pouvez contrôler l'apparence des liens qui n'ont pas été cliqués
+mais aussi celle des liens que l'utilisateur a seulement survolé avec sa souris, sans cliquer dessus.
+
+La syntaxe des sélecteurs de pseudo-classes ressemble à cela :
+
+			selector:pseudo-class_selector {
+		        property: value;
+		    }
+
+La différence avec la syntaxe des classes ? Il y a juste deux points : en plus après le sélecteur.
+
+a:hover {
+	color: #cc0000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:link : un lien non cliqué
+a:visited : un lien qui a été cliqué
+a:hover : un lien survolé par la souris et non cliqué
+
+
+Le premier enfant
+Un autre sélecteur de pseudo-classe utile est first-child.
+Il est utilisé pour appliquer un style uniquement aux éléments qui sont le premier enfant d'un parent.
+Par exemple :
+   p:first-child {
+        color: red;
+    }
+Cela va mettre tous les paragraphes qui sont les premiers enfants de leurs éléments parents en rouge.
+
+
+
+Le N-ième enfant
+Bien joué ! En fait, vous pouvez sélectionner n'importe quel enfant d'un élément parent en utilisant
+le sélecteur de pseudo-classe nth-child. Pour cela, vous ajoutez, entre parenthèses,
+le numéro de l'enfant que vous souhaitez cibler
+(ce numéro correspond à la place occupée par cet enfant dans la "descendance" du parent).
+
+Par exemple :
+p:nth-child(2) {
+    color: red;
+}
+Cela va attribuer la couleur red à tous les paragraphes qui sont le second enfant de leur parent.
+
+L'élément représentant l'enfant que l'on veut sélectionner est spécifié juste avant :nth-child.
+Dans l'exemple ci-dessus, l'élément ciblé est un p. Son élément parent est celui qui le contient.
+
+a:hover {
+    text-decoration: none;
+}
+
+a:first-child {
+    color: #CDBE70;
+}
+
+a:nth-child(3) {
+    color: #FFC125;
+}
+
+
+
+img {
+	width:100px;
+	height:100px;
+}
+
+table, td {
+	border: 2px #70a6ff dashed;
+}
